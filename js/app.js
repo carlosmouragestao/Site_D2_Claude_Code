@@ -231,6 +231,7 @@ function renderDetail(moto) {
 function showCatalog() {
   document.getElementById('view-catalog').classList.remove('hidden');
   document.getElementById('view-detail').classList.add('hidden');
+  renderCatalog();
   window.scrollTo({ top: 0, behavior: 'instant' });
 }
 
@@ -343,11 +344,19 @@ function clearAllFilters() {
 // ─── Event listeners ─────────────────────────────────────────────────────────
 function initEvents() {
 
-  // Busca
+  // Busca (tempo real)
   document.getElementById('search-input').addEventListener('input', function () {
     state.filters.search = this.value;
     renderCatalog();
   });
+
+  // Botão "Buscar" no hero — rola até os cards
+  var btnSearch = document.getElementById('btn-search');
+  if (btnSearch) {
+    btnSearch.addEventListener('click', function () {
+      document.getElementById('motos-grid').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  }
 
   // Marca
   document.getElementById('filter-marca').addEventListener('change', function () {

@@ -119,56 +119,115 @@ button { font-family: inherit; cursor: pointer; }
 
 /* ─── Hero ───────────────────────────────────────────────────────────────── */
 .hero {
-  background: linear-gradient(135deg, var(--red) 0%, var(--red-dark) 100%);
-  padding: 52px 0 44px;
+  background: linear-gradient(155deg, #c50003 0%, #AF0002 45%, #6e0001 100%);
+  padding: 52px 0 56px;
   margin-top: var(--header-h);
+  position: relative;
+  overflow: hidden;
 }
-.hero-inner { text-align: center; }
+/* Detalhe decorativo de fundo */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 110% 120%, rgba(232,189,63,.12) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 80% at -10% -10%, rgba(255,255,255,.06) 0%, transparent 55%);
+  pointer-events: none;
+}
+.hero-inner {
+  position: relative;
+  text-align: center;
+}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(232,189,63,.12);
+  border: 1.5px solid rgba(232,189,63,.45);
+  color: var(--gold);
+  padding: 6px 18px;
+  border-radius: 100px;
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.hero-badge::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--gold);
+  flex-shrink: 0;
+}
 .hero-title {
-  font-size: 1.75rem;
+  font-size: clamp(2rem, 8vw, 3.4rem);
   font-weight: 800;
   color: #fff;
-  letter-spacing: -.4px;
-  margin-bottom: 8px;
+  letter-spacing: -.5px;
+  line-height: 1.15;
+  margin-bottom: 16px;
 }
+.hero-highlight { color: var(--gold); }
 .hero-sub {
-  color: rgba(255,255,255,.8);
-  font-size: .95rem;
-  margin-bottom: 28px;
+  color: rgba(255,255,255,.78);
+  font-size: .97rem;
+  line-height: 1.65;
+  max-width: 420px;
+  margin: 0 auto 32px;
 }
+/* Search bar pill com botão */
 .search-wrapper {
   position: relative;
-  max-width: 620px;
+  max-width: 640px;
   margin: 0 auto;
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 100px;
+  box-shadow: 0 6px 32px rgba(0,0,0,.28);
+  padding: 6px 6px 6px 52px;
 }
 .search-icon {
   position: absolute;
-  left: 16px;
+  left: 20px;
   top: 50%;
   transform: translateY(-50%);
   width: 20px;
   height: 20px;
-  color: var(--muted);
+  color: #aaa;
   pointer-events: none;
 }
 .search-input {
-  width: 100%;
-  padding: 15px 16px 15px 48px;
+  flex: 1;
+  min-width: 0;
   border: none;
-  border-radius: var(--r);
-  font-family: var(--font);
-  font-size: 1rem;
-  color: var(--text);
-  background: #fff;
-  box-shadow: 0 4px 24px rgba(0,0,0,.22);
   outline: none;
-  transition: box-shadow .2s var(--ease);
+  font-family: var(--font);
+  font-size: .97rem;
+  color: var(--text);
+  background: transparent;
+  padding: 10px 8px;
   -webkit-appearance: none;
 }
-.search-input:focus {
-  box-shadow: 0 4px 24px rgba(0,0,0,.22), 0 0 0 3px rgba(232,189,63,.55);
-}
 .search-input::placeholder { color: #aaa; }
+.btn-search {
+  flex-shrink: 0;
+  background: var(--red);
+  color: #fff;
+  border: none;
+  border-radius: 100px;
+  padding: 11px 22px;
+  font-family: var(--font);
+  font-size: .88rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background .18s var(--ease);
+  white-space: nowrap;
+}
+.btn-search:hover { background: var(--red-dark); }
 
 /* ─── Barra de filtro mobile ─────────────────────────────────────────────── */
 .catalog-body { padding: 20px 0 60px; }
@@ -742,8 +801,6 @@ button { font-family: inherit; cursor: pointer; }
   height: 36px;
   width: auto;
   object-fit: contain;
-  filter: brightness(0) invert(1);
-  opacity: .85;
 }
 .footer-name {
   font-size: 1.1rem;
@@ -776,7 +833,6 @@ button { font-family: inherit; cursor: pointer; }
 
 /* ─── Responsive — tablet (≥ 640px) ─────────────────────────────────────── */
 @media (min-width: 640px) {
-  .hero-title  { font-size: 2.2rem; }
   .motos-grid  { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
   .footer-top  { flex-direction: row; justify-content: space-between; align-items: flex-start; }
   .header-address { display: flex; }
@@ -784,8 +840,7 @@ button { font-family: inherit; cursor: pointer; }
 
 /* ─── Responsive — desktop (≥ 900px) ────────────────────────────────────── */
 @media (min-width: 900px) {
-  .hero { padding: 72px 0 60px; }
-  .hero-title { font-size: 2.6rem; }
+  .hero { padding: 80px 0 72px; }
 
   /* Esconde barra de filtro mobile */
   .mobile-filter-bar { display: none; }
