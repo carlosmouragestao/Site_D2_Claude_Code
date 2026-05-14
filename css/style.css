@@ -230,7 +230,7 @@ button { font-family: inherit; cursor: pointer; }
 .btn-search:hover { background: var(--red-dark); }
 
 /* ─── Barra de filtro mobile ─────────────────────────────────────────────── */
-.catalog-body { padding: 20px 0 60px; }
+.catalog-body { padding-top: 20px; padding-bottom: 60px; }
 .mobile-filter-bar {
   display: flex;
   align-items: center;
